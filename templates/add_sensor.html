@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>室内温度检测系统</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<ul class="nav nav-tabs">
+					<li>
+						 <a href="../">首页</a>
+					</li>
+					<li>
+						 <a href="sensorlist">传感器列表</a>
+					</li>
+					<li class = "active">
+						 <a href="add_new">添加新传感器</a>
+					</li>
+					<li>
+						<a href="alarm_setting">报警设置</a>
+					</li>
+				</ul>
+				<h3>
+					添加传感器
+				</h3>
+			</div>
+		</div>
+		{% if succeed == 1 %}
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<h4>
+					添加成功！传感器 Key 为: {{sensorkey}}
+				</h4>
+				<a href="add_new">返回上一级页面</a>
+			</div>
+		</div>
+		{% else %}
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<form action="add_sensor">
+					传感器名称<input type="text" name="sensorname" value=""><br>
+					<h1>
+					</h1>
+					<input type="submit" value="添加">
+				</form>
+			</div>
+		</div>
+		{% endif %}
+	</div>
+</body>
+</html>

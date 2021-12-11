@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>室内温度检测系统</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<ul class="nav nav-tabs">
+					<li>
+						 <a href="../">首页</a>
+					</li>
+					<li>
+						 <a href="sensorlist">传感器列表</a>
+					</li>
+					<li class>
+						 <a href="add_new">添加新传感器</a>
+					</li>
+					<li class="active">
+						<a href="alarm_setting">报警设置</a>
+					</li>
+				</ul>
+				<h3>
+					温度报警设置
+				</h3>
+			</div>
+		</div>
+		{% if setting == 1 %}
+		<div class="row clearfix">
+		<div class="col-md-6 column">
+			<form action="edit_alarm_settings">
+				<div class="checkbox">
+					<p>
+						报警开关
+						{% if current_temperature != -1 %}
+						<input checked type="radio" name="alarming_status" value='on'>开启
+						<input type="radio" name="alarming_status" value='off'>关闭
+						{% else %}
+						<input type="radio" name="alarming_status" value='on'>开启
+						<input checked type="radio" name="alarming_status" value='off'>关闭
+						{% endif %}
+					</p>
+				</div>
+				<p>
+					{% if current_temperature == -1 %}
+					<input type="hidden" value="-1" name="alarming_temperature">
+					{% else %}
+					报警温度
+					<input type="number" value={{current_temperature}} name="alarming_temperature" min="0" max="1000">
+					{% endif %}
+				</p>
+				{% if current_temperature == 1000 %}
+				<p>
+					请注意修改缺省值
+				</p>
+				{% endif %}
+				<p>
+					<button type="submit">保存设置</button>
+				</p>
+			</form>
+		</div>
+		<div class="col-md-6 column">
+		</div>
+	</div>
+	{% else %}
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<h4>
+				设置修改成功
+			</h4>
+			<a href="alarm_setting">返回上一级页面</a>
+		</div>
+	</div>
+	{% endif %}
+</body>
+</html>
